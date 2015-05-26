@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="js/general.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<script type="text/javascript" src="./cordova.js"></script> <!-- Incluir en todos los .html -->
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="js/gmap3.js"></script>
+		<title>Hola Mundo!</title>
+		<script type="text/javascript">
+        
+        // note: autocomplete require on / off function so at least jQuery 1.7
+    
+        $(function(){
+            
+            $("#test").gmap3();
+            
+            $("#address").autocomplete({
+                source: function() {
+                    $("#test").gmap3({
+                        getaddress: {
+                            address: $(this).val(),
+                            callback: function(results){
+                                if (!results) return;
+                                $("#address").autocomplete("display", results, false);
+                            }
+                        }
+                    });
+                },
+                cb:{
+                    cast: function(item){
+                        return item.formatted_address;
+                    },
+                    select: function(item) {
+                        $("#test").gmap3({
+                            clear: "marker",
+                            marker: {
+                                latLng: item.geometry.location
+                            },
+                            map:{
+                                options: {
+                                    center: item.geometry.location,
+                                }
+                            }
+                        });
+                    }
+                }
+            })
+            .focus();
+        
+        });
+    </script>
+	</head>
+	<body onload="onBodyLoad()">
+	    <div id="test" class="gmap3"></div>
+	    <input type="text" id="address" size="60">
+	</body>
+</html>

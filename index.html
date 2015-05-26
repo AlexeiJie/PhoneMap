@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        
+        <script type="text/javascript" src="js/jquery-autocomplete.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/jquery-autocomplete.css"/>
+        
 		<script type="text/javascript" src="js/general.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 		<script type="text/javascript" src="./cordova.js"></script> <!-- Incluir en todos los .html -->
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script type="text/javascript" src="js/gmap3.js"></script>
-		<title>Hola Mundo!</title>
+		<title>PhoneMap v0.0.1</title>
 		<script type="text/javascript">
         
         // note: autocomplete require on / off function so at least jQuery 1.7
@@ -54,6 +58,6 @@
 	</head>
 	<body onload="onBodyLoad()">
 	    <div id="test" class="gmap3"></div>
-	    <input type="text" id="address" size="60">
+	    <label for="address">Dirección: </label><input type="text" id="address" size="60">
 	</body>
 </html>
